@@ -108,21 +108,75 @@
   </nav>
 
   <h1>Chào anh em đến web tui</h1>
+<style>
+  .tool-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+  }
 
-  <section id="tool" style="padding: 50px 20px;">
-    <h2 style="text-align: center;">🛠 Tool by Yeumoney</h2>
-    <div class="tool-container">
-      <div class="tool-card">
-        <h3>Auto Click Nút "Lấy mã"</h3>
-        <p>Tự động tìm và bấm nút lấy mã trong trang nhiệm vụ.</p>
-        <button onclick="alert('Đang khởi động auto click!')">Khởi động</button>
-      </div>
-      <div class="tool-card">
-        <h3>Anti Popup Google</h3>
-        <p>Tự động đóng popup khi truy cập Google qua nhiệm vụ.</p>
-        <button onclick="alert('Đã bật Anti Popup!')">Bật Tính năng</button>
-      </div>
+  .tool-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+    transition: transform 0.3s;
+  }
+
+  .tool-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .tool-card h3 {
+    margin-top: 0;
+    color: #fff;
+  }
+
+  .tool-card p {
+    color: #ddd;
+  }
+
+  .tool-card button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: none;
+    background: white;
+    color: #333;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .tool-card button:hover {
+    background: #ffd;
+  }
+
+  @media (max-width: 600px) {
+    .tool-card {
+      width: 90%;
+    }
+  }
+</style>
+
+<section id="tool" style="padding: 50px 20px;">
+  <h2 style="text-align: center;">🛠 Tool by Yeumoney</h2>
+  <div class="tool-container">
+    <div class="tool-card">
+      <h3>Auto Click Nút "Lấy mã"</h3>
+      <p>Tự động tìm và bấm nút lấy mã trong trang nhiệm vụ.</p>
+      <button onclick="alert('Đang khởi động auto click!')">Khởi động</button>
     </div>
-  </section>
-</body>
-</html>
+    <div class="tool-card">
+      <h3>Anti Popup Google</h3>
+      <p>Tự động đóng popup khi truy cập Google qua nhiệm vụ.</p>
+      <button onclick="alert('Đã bật Anti Popup!')">Bật Tính năng</button>
+    </div>
+  </div>
+</section>
