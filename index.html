@@ -2,29 +2,62 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Vercel Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Glass Menu</title>
   <style>
     body {
       margin: 0;
-      font-family: sans-serif;
-      background: #111;
-      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #667eea, #764ba2);
+      height: 100vh;
+      color: white;
     }
+
     nav {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
       display: flex;
-      gap: 20px;
-      padding: 20px;
-      background: #000;
-      border-bottom: 1px solid #333;
+      justify-content: center;
+      gap: 40px;
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
+
     nav a {
       color: white;
       text-decoration: none;
-      transition: color 0.2s;
+      font-weight: bold;
+      font-size: 18px;
+      position: relative;
+      transition: color 0.3s;
     }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      left: 0;
+      bottom: -5px;
+      background-color: white;
+      transition: width 0.3s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
     nav a:hover {
-      color: #999;
+      color: #ffd;
+    }
+
+    h1 {
+      text-align: center;
+      padding-top: 100px;
     }
   </style>
 </head>
@@ -36,8 +69,6 @@
     <a href="#">Contact</a>
   </nav>
 
-  <main>
-    <h1 style="padding: 20px;">Welcome to My Site!</h1>
-  </main>
+  <h1>Welcome to My Stylish Website!</h1>
 </body>
 </html>
