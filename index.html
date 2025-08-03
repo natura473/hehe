@@ -59,16 +59,70 @@
       text-align: center;
       padding-top: 100px;
     }
+
+    .tool-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .tool-card {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 20px;
+      width: 300px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .tool-card h3 {
+      margin-top: 0;
+    }
+
+    .tool-card button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      border: none;
+      background: #fff;
+      color: #333;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .tool-card button:hover {
+      background: #ffd;
+    }
   </style>
 </head>
 <body>
   <nav>
     <a href="#">Home</a>
     <a href="#">About</a>
-    <a href="#">tool by yeumoney</a>
+    <a href="#tool">Tool by Yeumoney</a>
     <a href="#">Contact</a>
   </nav>
 
-  <h1>chào anh em đến web tui </h1>
+  <h1>Chào anh em đến web tui</h1>
+
+  <section id="tool" style="padding: 50px 20px;">
+    <h2 style="text-align: center;">🛠 Tool by Yeumoney</h2>
+    <div class="tool-container">
+      <div class="tool-card">
+        <h3>Auto Click Nút "Lấy mã"</h3>
+        <p>Tự động tìm và bấm nút lấy mã trong trang nhiệm vụ.</p>
+        <button onclick="alert('Đang khởi động auto click!')">Khởi động</button>
+      </div>
+      <div class="tool-card">
+        <h3>Anti Popup Google</h3>
+        <p>Tự động đóng popup khi truy cập Google qua nhiệm vụ.</p>
+        <button onclick="alert('Đã bật Anti Popup!')">Bật Tính năng</button>
+      </div>
+    </div>
+  </section>
 </body>
 </html>
