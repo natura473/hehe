@@ -2,54 +2,98 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Trình tải video YouTube</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tải Video YouTube</title>
   <style>
     body {
-      background: linear-gradient(to right, #1f1c2c, #928dab);
-      font-family: sans-serif;
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #667eea, #764ba2);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
       color: white;
+      padding: 20px;
+    }
+
+    h1 {
+      margin-bottom: 30px;
       text-align: center;
-      padding: 50px;
     }
+
     input {
-      width: 80%;
-      max-width: 500px;
       padding: 12px;
-      font-size: 16px;
-      border-radius: 8px;
+      width: 100%;
+      max-width: 500px;
       border: none;
-      margin-top: 20px;
+      border-radius: 8px;
+      font-size: 16px;
+      margin-bottom: 20px;
+      outline: none;
     }
+
     button {
-      margin-top: 20px;
       padding: 12px 24px;
       font-size: 16px;
       border: none;
       border-radius: 8px;
-      background: #00e676;
+      background: #ffffff20;
+      color: white;
       cursor: pointer;
+      backdrop-filter: blur(5px);
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #ffffff40;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 22px;
+      }
+
+      input, button {
+        width: 90%;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>🎬 Trình tải video YouTube</h1>
-  <p>Dán liên kết YouTube bạn muốn tải:</p>
-  <input type="text" id="ytLink" placeholder="https://www.youtube.com/watch?v=..." />
-  <br />
-  <button onclick="go()">Tải ngay</button>
+  <h1>Tải Video YouTube 🎥</h1>
+  <input type="text" id="ytLink" placeholder="Dán link YouTube vào đây..." />
+  <button onclick="go()">Tải Video</button>
 
   <script>
     function go() {
       const link = document.getElementById("ytLink").value.trim();
       if (!link.includes("youtube.com") && !link.includes("youtu.be")) {
-        alert("Vui lòng nhập link YouTube hợp lệ!");
+        alert("❌ Vui lòng nhập link YouTube hợp lệ!");
         return;
       }
 
-      // Chuyển hướng sang trang tải (bạn có thể thay bằng trang khác)
-      const encoded = encodeURIComponent(link);
-      window.open("https://www.y2mate.is/en68?q=" + encoded, "_blank");
+      try {
+        const url = new URL(link);
+        let videoId = "";
+
+        if (url.hostname.includes("youtu.be")) {
+          videoId = url.pathname.slice(1);
+        } else {
+          videoId = url.searchParams.get("v");
+        }
+
+        if (!videoId) {
+          alert("❌ Không thể lấy ID video!");
+          return;
+        }
+
+        // Redirect đến ssyoutube
+        window.open("https://ssyoutube.com/watch?v=" + videoId, "_blank");
+      } catch (e) {
+        alert("❌ Link không hợp lệ!");
+      }
     }
   </script>
 </body>
