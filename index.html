@@ -1,66 +1,123 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
   <title>Tải Video YouTube</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      margin: 0;
       font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(to right, #00c6ff, #0072ff);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
       color: white;
-      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      min-height: 100vh;
     }
 
     h1 {
-      margin-bottom: 30px;
-      text-align: center;
+      margin-bottom: 20px;
     }
 
     input {
       padding: 12px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+      margin: 10px 0;
       width: 100%;
       max-width: 500px;
-      border: none;
+    }
+
+    ul.option-list {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    ul.option-list li {
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 10px 15px;
       border-radius: 8px;
-      font-size: 16px;
-      margin-bottom: 20px;
-      outline: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    ul.option-list li.selected {
+      background-color: rgba(255, 255, 255, 0.4);
+      font-weight: bold;
     }
 
     button {
-      padding: 12px 24px;
-      font-size: 16px;
+      background-color: white;
+      color: #0072ff;
       border: none;
-      border-radius: 8px;
-      background: rgba(255,255,255,0.2);
-      color: white;
+      padding: 12px 24px;
+      border-radius: 10px;
       cursor: pointer;
-      backdrop-filter: blur(5px);
-      transition: background 0.3s;
+      font-size: 16px;
+      margin-top: 20px;
     }
 
-    button:hover {
-      background: rgba(255,255,255,0.3);
+    #result {
+      margin-top: 30px;
     }
   </style>
 </head>
 <body>
+
   <h1>🎥 Tải Video YouTube</h1>
-  <input type="text" id="ytLink" placeholder="Dán link YouTube vào đây..." />
-  <button onclick="go()">Tải Video</button>
+  <input type="text" id="ytLink" placeholder="Dán link YouTube tại đây..." />
+
+  <h3>🎞 Chọn định dạng:</h3>
+  <ul class="option-list" id="formatList">
+    <li data-value="mp4" class="selected">MP4</li>
+    <li data-value="mp3">MP3</li>
+    <li data-value="wav">WAV</li>
+    <li data-value="gif">GIF</li>
+  </ul>
+
+  <h3>⚙️ Chọn chất lượng:</h3>
+  <ul class="option-list" id="qualityList">
+    <li data-value="highest" class="selected">Cao nhất</li>
+    <li data-value="720p">720p</li>
+    <li data-value="480p">480p</li>
+    <li data-value="360p">360p</li>
+    <li data-value="lowest">Thấp nhất</li>
+  </ul>
+
+  <button onclick="download()">Tải về</button>
+
+  <div id="result"></div>
 
   <script>
-    function go() {
-      const link = document.getElementById("ytLink").value.trim();
+    const formatList = document.getElementById('formatList');
+    const qualityList = document.getElementById('qualityList');
+
+    function handleSelection(list) {
+      list.querySelectorAll('li').forEach(li => {
+        li.addEventListener('click', () => {
+          list.querySelectorAll('li').forEach(item => item.classList.remove('selected'));
+          li.classList.add('selected');
+        });
+      });
+    }
+
+    handleSelection(formatList);
+    handleSelection(qualityList);
+
+    function download() {
+      const link = document.getElementById('ytLink').value.trim();
+      const format = document.querySelector('#formatList .selected').dataset.value;
+      const quality = document.querySelector('#qualityList .selected').dataset.value;
+      const resultDiv = document.getElementById('result');
+
       if (!link.includes("youtube.com") && !link.includes("youtu.be")) {
-        alert("❌ Vui lòng nhập link YouTube hợp lệ!");
+        alert("❌ Link không hợp lệ!");
         return;
       }
 
@@ -79,12 +136,18 @@
           return;
         }
 
-        // Redirect đến yout.com
-        window.open("https://yout.com/video/" + videoId, "_blank");
+        const downloadUrl = `https://yout.com/video/${videoId}?format=${format}`;
+        resultDiv.innerHTML = `
+          <p>⏬ Nhấn vào nút dưới để tải ${format.toUpperCase()} (${quality}):</p>
+          <a href="${downloadUrl}" target="_blank">
+            <button>Tải ${format.toUpperCase()}</button>
+          </a>
+        `;
       } catch (e) {
-        alert("❌ Link không hợp lệ!");
+        alert("❌ Lỗi xử lý link!");
       }
     }
   </script>
+
 </body>
 </html>
