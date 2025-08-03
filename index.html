@@ -8,7 +8,7 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #667eea, #764ba2);
+      background: linear-gradient(to right, #00c6ff, #0072ff);
       min-height: 100vh;
       display: flex;
       align-items: center;
@@ -39,7 +39,7 @@
       font-size: 16px;
       border: none;
       border-radius: 8px;
-      background: #ffffff20;
+      background: rgba(255,255,255,0.2);
       color: white;
       cursor: pointer;
       backdrop-filter: blur(5px);
@@ -47,22 +47,12 @@
     }
 
     button:hover {
-      background: #ffffff40;
-    }
-
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 22px;
-      }
-
-      input, button {
-        width: 90%;
-      }
+      background: rgba(255,255,255,0.3);
     }
   </style>
 </head>
 <body>
-  <h1>Tải Video YouTube 🎥</h1>
+  <h1>🎥 Tải Video YouTube</h1>
   <input type="text" id="ytLink" placeholder="Dán link YouTube vào đây..." />
   <button onclick="go()">Tải Video</button>
 
@@ -89,8 +79,8 @@
           return;
         }
 
-        // Redirect đến ssyoutube
-        window.open("https://ssyoutube.com/watch?v=" + videoId, "_blank");
+        // Redirect đến yout.com
+        window.open("https://yout.com/video/" + videoId, "_blank");
       } catch (e) {
         alert("❌ Link không hợp lệ!");
       }
