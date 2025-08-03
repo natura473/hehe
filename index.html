@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Glass Menu</title>
+  <title>Yeumoney Auto Tool</title>
   <style>
     body {
       margin: 0;
@@ -57,7 +57,7 @@
 
     h1 {
       text-align: center;
-      padding-top: 100px;
+      padding-top: 80px;
     }
 
     .tool-container {
@@ -70,26 +70,46 @@
 
     .tool-card {
       background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 12px;
-      padding: 20px;
-      width: 300px;
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
+      padding: 20px;
+      width: 320px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .tool-card:hover {
+      transform: translateY(-5px);
     }
 
     .tool-card h3 {
       margin-top: 0;
+      color: #fff;
+    }
+
+    .tool-card p {
+      color: #ddd;
+    }
+
+    .tool-card input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: none;
+      font-size: 14px;
     }
 
     .tool-card button {
-      margin-top: 10px;
+      margin-top: 12px;
       padding: 10px 20px;
       border: none;
-      background: #fff;
+      background: white;
       color: #333;
-      font-weight: bold;
       border-radius: 8px;
+      font-weight: bold;
       cursor: pointer;
       transition: background 0.3s;
     }
@@ -97,86 +117,45 @@
     .tool-card button:hover {
       background: #ffd;
     }
+
+    @media (max-width: 600px) {
+      .tool-card {
+        width: 90%;
+      }
+    }
   </style>
 </head>
 <body>
   <nav>
-    <a href="#">Home</a>
-    <a href="#">About</a>
-    <a href="#tool">Tool by Yeumoney</a>
-    <a href="#">Contact</a>
+    <a href="#">Trang chủ</a>
+    <a href="#tool">Tool</a>
+    <a href="#">Liên hệ</a>
   </nav>
 
-  <h1>Chào anh em đến web tui</h1>
-<style>
-  .tool-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 30px;
-  }
+  <h1>🧠 Tool Tự Động Hóa Nhiệm Vụ Yeumoney</h1>
 
-  .tool-card {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 15px;
-    padding: 20px;
-    width: 300px;
-    text-align: center;
-    transition: transform 0.3s;
-  }
+  <section id="tool" style="padding: 50px 20px;">
+    <h2 style="text-align: center;">🛠 Tool by Yeumoney</h2>
+    <div class="tool-container">
+      <div class="tool-card">
+        <h3>🔗 Nhập Link Nhiệm Vụ</h3>
+        <p>Tool sẽ mở link, tự động lấy mã và quay lại CMP.</p>
+        <input id="taskLink" type="text" placeholder="Dán link nhiệm vụ vào đây...">
+        <button onclick="startAutoTool()">Khởi động Tool</button>
+      </div>
+    </div>
+  </section>
 
-  .tool-card:hover {
-    transform: translateY(-5px);
-  }
-
-  .tool-card h3 {
-    margin-top: 0;
-    color: #fff;
-  }
-
-  .tool-card p {
-    color: #ddd;
-  }
-
-  .tool-card button {
-    margin-top: 10px;
-    padding: 10px 20px;
-    border: none;
-    background: white;
-    color: #333;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-
-  .tool-card button:hover {
-    background: #ffd;
-  }
-
-  @media (max-width: 600px) {
-    .tool-card {
-      width: 90%;
+  <script>
+    function startAutoTool() {
+      const link = document.getElementById('taskLink').value.trim();
+      if (!link || !link.startsWith('http')) {
+        alert('⚠️ Vui lòng nhập một link hợp lệ!');
+        return;
+      }
+      alert('✅ Đang mở nhiệm vụ...');
+      window.open(link, '_blank');
     }
-  }
-</style>
-
-<section id="tool" style="padding: 50px 20px;">
-  <h2 style="text-align: center;">🛠 Tool by Yeumoney</h2>
-  <div class="tool-container">
-    <div class="tool-card">
-      <h3>Auto Click Nút "Lấy mã"</h3>
-      <p>Tự động tìm và bấm nút lấy mã trong trang nhiệm vụ.</p>
-      <button onclick="alert('Đang khởi động auto click!')">Khởi động</button>
-    </div>
-    <div class="tool-card">
-      <h3>Anti Popup Google</h3>
-      <p>Tự động đóng popup khi truy cập Google qua nhiệm vụ.</p>
-      <button onclick="alert('Đã bật Anti Popup!')">Bật Tính năng</button>
-    </div>
-  </div>
-</section>
+  </script>
+</body>
+</html>
